@@ -6,19 +6,21 @@ const app = express();
 
 app.use(
   express.urlencoded({
-    extended: true,
+    extended: true
   })
 );
 app.use(express.json());
 app.use(cors());
 
 // routing
+app.use("/api/bookmark", require("./routes/Bookmark"));
+app.use("/api/note", require("./routes/Note"));
 
 const connection = mongoose.connect(
   "mongodb+srv://neil:<password>@collectapp-joovi.mongodb.net/collectdb?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
-    useCreateIndex: true,
+    useCreateIndex: true
   }
 );
 
