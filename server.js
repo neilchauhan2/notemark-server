@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const config = require("config");
 
+// port
+const port = process.env.PORT || 2000;
+
 const app = express();
 
 app.use(
@@ -27,6 +30,6 @@ const connection = mongoose.connect(mongoURI, {
   useCreateIndex: true
 });
 
-app.listen(2000, () => {
-  console.log("server started at http://localhost:2000");
+app.listen(port, () => {
+  console.log(`server started at ${port}`);
 });
