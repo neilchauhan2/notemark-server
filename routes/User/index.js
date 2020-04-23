@@ -3,7 +3,7 @@ const { User } = require("../../models/User");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { createUser, getUser } = require("../../controllers/user");
+const { createUser, getUser } = require("../../controllers/User");
 
 // create user
 route.post("/signup", async (req, res) => {
