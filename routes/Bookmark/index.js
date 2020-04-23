@@ -8,8 +8,8 @@ const {
 //create bookmark
 route.post("/add", async (req, res) => {
   try {
-    const { title, description, url } = req.body;
-    const bookmark = await createBookmark({ title, description, url });
+    const { title, description, url, creator } = req.body;
+    const bookmark = await createBookmark({ title, description, url, creator });
     res.send(bookmark);
   } catch (error) {
     throw error;

@@ -8,8 +8,8 @@ const {
 //create note
 route.post("/add", async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const note = await createNote({ title, description });
+    const { title, description, creator } = req.body;
+    const note = await createNote({ title, description, creator });
     res.send(note);
   } catch (error) {
     throw error;
