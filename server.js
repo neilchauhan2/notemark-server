@@ -21,7 +21,7 @@ app.use("/api/bookmark", require("./routes/Bookmark"));
 app.use("/api/note", require("./routes/Note"));
 app.use("/api/user", require("./routes/User"));
 
-// mongoUri
+// mongoUri.
 const mongoURI = config.get("mongoURI");
 
 // db connection
