@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const config = require("config");
 
 const app = express();
 
@@ -15,14 +16,16 @@ app.use(cors());
 // routing
 app.use("/api/bookmark", require("./routes/Bookmark"));
 app.use("/api/note", require("./routes/Note"));
+app.use("/api/user", require("./routes/User"));
 
-const connection = mongoose.connect(
-  "mongodb+srv://neil:<password>@collectapp-joovi.mongodb.net/collectdb?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  }
-);
+// mongoUri
+const mongoURI = config.get("mongoURI");
+
+// db connection
+const connection = mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 app.listen(2000, () => {
   console.log("server started at http://localhost:2000");
