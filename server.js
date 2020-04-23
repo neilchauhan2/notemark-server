@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const config = require("config");
+require("dotenv").config();
 
 // port
 const port = process.env.PORT || 2000;
@@ -21,8 +21,13 @@ app.use("/api/bookmark", require("./routes/Bookmark"));
 app.use("/api/note", require("./routes/Note"));
 app.use("/api/user", require("./routes/User"));
 
+// hello
+app.use("/", (req, res) => {
+  res.send("<h1>Welcome to Notemark Server!</h1>");
+});
+
 // mongoUri.
-const mongoURI = config.get("mongoURI");
+const mongoURI = process.env.MONGO_URI;
 
 // db connection
 const connection = mongoose.connect(mongoURI, {

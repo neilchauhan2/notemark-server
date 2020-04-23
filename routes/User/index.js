@@ -29,7 +29,7 @@ route.post("/signup", async (req, res) => {
       {
         id: newUser.id
       },
-      config.get("jwtSecret"),
+      process.env.JWT_SECRET,
       (err, token) => {
         if (err) throw err;
         res.send({
@@ -72,7 +72,7 @@ route.post("/login", async (req, res) => {
         {
           id: user.id
         },
-        config.get("jwtSecret"),
+        process.env.JWT_SECRET,
         (err, token) => {
           if (err) throw err;
           res.send({
