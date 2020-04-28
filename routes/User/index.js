@@ -1,6 +1,6 @@
 const route = require("express").Router();
 const { User } = require("../../models/User");
-const config = require("config");
+const auth = require("../../middleware/auth");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { createUser, getUser } = require("../../controllers/User");
@@ -94,12 +94,13 @@ route.post("/login", async (req, res) => {
 });
 
 // get user
-route.get("/", async (req, res) => {
+route.get("/", auth, async (req, res) => {
   try {
     const user = await getUser(req.user.id);
+    if (!user) throw Error("User Does not exist");
     res.send(user);
   } catch (error) {
-    throw error;
+    res.status(400).json({ msg: error.message });
   }
 });
 
