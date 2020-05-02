@@ -25,7 +25,7 @@ const createUser = async (username, name, email, password) => {
 const getUser = async (userId) => {
   try {
     const user = await User.findById(userId).select("-password");
-    res.send(user);
+    return user;
   } catch (error) {
     throw error;
   }
